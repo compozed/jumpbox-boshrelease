@@ -38,6 +38,7 @@ properties:
       - name: jhunt
         shell: /bin/bash
         env: https://github.com/jhunt/devbox-env.git  # specifies a git environment to clone
+        groups: "vcap,uucp" # Comma-seperated list of groups to add the user to in addition to bosh_sshers
         ssh_keys:
           - ssh-rsa AAAAB3NzaC1yabcd
           - ssh-rsa AAAAB3NzaC1y1234

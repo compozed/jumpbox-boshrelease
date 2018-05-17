@@ -21,6 +21,7 @@ export GOPATH=${HOME}/go
 export PATH=/var/vcap/packages/jumpbox/bin:$PATH:/var/vcap/bosh/bin:/var/vcap/packages/golang/bin:${GOPATH}/bin
 export LD_LIBRARY_PATH=/var/vcap/packages/jumpbox/lib
 export MANPATH=/usr/share/man:/var/vcap/packages/jumpbox/share/man:/var/vcap/packages/jumpbox/man
+export DOCKER_HOST=unix:///var/vcap/sys/run/docker/docker.sock
 
 ################################################################################
 #######################################################  one-time per-user setup
