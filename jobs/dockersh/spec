@@ -13,6 +13,12 @@ properties:
   image:
     description: The docker image you want to use for the user containers
     default: busybox
+  volume:
+    description: The docker volume you want to use for the user containers, optional
+    example: homedirs
+  mount:
+    description: Where the docker volume should be mounted
+    default: /home
   command:
     description: The command you want to execute when you run the container like /bin/bash
     example: /bin/bash

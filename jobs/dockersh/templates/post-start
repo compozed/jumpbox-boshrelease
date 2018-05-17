@@ -7,8 +7,16 @@ PATH=${PATH}:/var/vcap/packages/docker/bin/
 export DOCKER_HOST=unix:///var/vcap/sys/run/docker/docker.sock
 
 image="<%= p('image') %>"
+volume="<%= if (defined? volume) then volume else '' %>
 
-#found_image=$(docker search ${image} | cut -d' ' -f1 | grep -e "${image}$" | wc -l)
-#if [ "${found_image}" == "1" ]; then
 docker pull ${image}
-#fi
+
+# Did they request a docker volume?
+if [[ -n $volume ]]; then
+  # Does the volume already exist?
+  docker volume inspect $volume
+  if [[ $? -ne 0 ]]; then
+    # Create the volume
+    docker volume create $volume
+  fi
+fi
