@@ -1,0 +1,27 @@
+#!/bin/bash
+exec </dev/null >>/var/vcap/sys/log/dockerpull.log 2>&1
+
+set -e
+pidfile=/var/vcap/sys/run/dockersh/dockerpull.pid
+dockerpull=/var/vcap/jobs/dockersh/bin/dockerpull
+
+mkdir -p $(dirname $pidfile)
+chown vcap:vcap $(dirname $pidfile)
+
+case $1 in
+  start)
+    echo $$ > $pidfile
+
+    exec $dockerpull
+    ;;
+
+  stop)
+    kill -9 $(cat $pidfile)
+    rm -f $pidfile
+    ;;
+
+  *)
+    echo "Usage: dockerpull {start|stop}"
+    ;;
+
+esac

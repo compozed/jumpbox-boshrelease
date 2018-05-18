@@ -4,6 +4,14 @@
 PATH=${PATH}:/var/vcap/packages/docker/bin/
 export DOCKER_HOST=unix:///var/vcap/sys/run/docker/docker.sock
 
-docker run -i --user "<%= p('user')%>" -t "<%= p('image') %>" \
-  <%= if (defined? volume) then "-v " + p('volume') + ":" + p('mount') else "" end %> \
-  <%= if (defined? command) then p('command') else "" end %>
+<% if_p('volume') do |volume| -%>
+# Add a volume command if they have set one
+volume="-v <%= p('volume') %>:<%= p('mount') %>"
+<% end -%>
+
+<% if_p('command') do |command| -%>
+# Add a command to run if they have set one
+command="<%= p('command') %>"
+<% end -%>
+
+docker run -i --user "<%= p('user')%>" -t $volume "<%= p('image') %>" $command

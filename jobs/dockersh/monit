@@ -1,0 +1,6 @@
+check process dockerpull
+  with pidfile /var/vcap/sys/run/dockersh/dockerpull.pid
+  start program "/var/vcap/jobs/dockersh/bin/dockerpull_ctl start"
+  stop program "/var/vcap/jobs/dockersh/bin/dockerpull_ctl stop"
+  group vcap
+  depends on docker

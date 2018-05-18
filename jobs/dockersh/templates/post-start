@@ -2,21 +2,11 @@
 
 set -e
 
-# pull docker image
 PATH=${PATH}:/var/vcap/packages/docker/bin/
 export DOCKER_HOST=unix:///var/vcap/sys/run/docker/docker.sock
 
-image="<%= p('image') %>"
-volume="<%= if (defined? volume) then volume else '' %>
 
-docker pull ${image}
-
-# Did they request a docker volume?
-if [[ -n $volume ]]; then
-  # Does the volume already exist?
-  docker volume inspect $volume
-  if [[ $? -ne 0 ]]; then
-    # Create the volume
-    docker volume create $volume
-  fi
-fi
+<% if_p('volume') do |volume| -%>
+# Create the docker volume if one is set. Can be run multiple times without error
+docker volume create <%= p('volume') %>
+<% end -%>

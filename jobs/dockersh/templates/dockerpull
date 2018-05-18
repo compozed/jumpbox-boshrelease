@@ -1,0 +1,43 @@
+#!/bin/bash
+exec </dev/null >>/var/vcap/sys/log/dockerpull.log 2>&1
+umask 022
+
+#
+# dockerpull is a small shell-daemon that regularly checks
+# the updates the docker image launched on login from upstream docker repo
+#
+
+# Default interval is 0 so it only run per bosh deploy. 
+# Or on restart of the monit job
+# Time interval is in Seconds
+
+
+# pull docker image
+PATH=${PATH}:/var/vcap/packages/docker/bin/
+export DOCKER_HOST=unix:///var/vcap/sys/run/docker/docker.sock
+
+DOCKER_PULL_INTERVAL="<%= p('pull_interval') %>"
+DOCKER_IMAGE="<%= p('image') %>"
+
+
+
+
+# Things that get logged on all run-throughs
+log() {
+	echo >&2 "[$(date +'%Y%m%d %HH%MM.%SS')] dockerpull[$$]: " $*
+}
+
+if [[ $DOCKER_PULL_INTERVAL -gt 0 ]]; then
+while true; do
+  log "Running Docker Pull of ${DOCKER_IMAGE}"
+  docker pull ${DOCKER_IMAGE}
+	sleep ${DOCKER_PULL_INTERVAL} 
+done
+else
+  log "DEFAULT: Running Docker Pull One Time of ${DOCKER_IMAGE}"
+  docker pull ${DOCKER_IMAGE}
+  # This is to make monit happy. Restarting monit will still force a re-pull once.
+  while true; do
+    sleep 10000
+  done
+fi	

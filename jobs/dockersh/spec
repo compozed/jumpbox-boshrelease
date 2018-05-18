@@ -5,6 +5,8 @@ templates:
   dockersh: bin/dockersh
   pre-start: bin/pre-start
   post-start: bin/post-start
+  dockerpull: bin/dockerpull
+  dockerpull_ctl: bin/dockerpull_ctl
   env: config/env
 
 packages: []
@@ -16,6 +18,9 @@ properties:
   volume:
     description: The docker volume you want to use for the user containers, optional
     example: homedirs
+  pull_interval: 
+    decription:  Sets the docker pull interval in seconds Default is 0 disables the automatic refresh of the Docker image
+    default: 0 
   mount:
     description: Where the docker volume should be mounted
     default: /home
