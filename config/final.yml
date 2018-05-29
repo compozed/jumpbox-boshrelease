@@ -2,5 +2,6 @@
 blobstore:
   provider: s3
   options:
-    bucket_name: jumpbox-boshrelease
+    bucket_name: temporary-jumpbox-boshrelease
+    credentials_source: env_or_profile
 final_name: jumpbox
