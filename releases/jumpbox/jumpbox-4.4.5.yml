@@ -1,0 +1,43 @@
+name: jumpbox
+version: 4.4.5
+commit_hash: 4741b9b
+uncommitted_changes: false
+jobs:
+- name: docker
+  version: 98e34af9ee056ddcce5c6cc78fd24cd4ee84d411
+  fingerprint: 98e34af9ee056ddcce5c6cc78fd24cd4ee84d411
+  sha1: 9d51eb506636aa151a5ca7af44b538eb989a5a08
+- name: jumpbox
+  version: 05f7f0b1a825fae140b73540dfbe87329bd4859d
+  fingerprint: 05f7f0b1a825fae140b73540dfbe87329bd4859d
+  sha1: 051e2f3ce48fc9f15026b13bf483167442727667
+packages:
+- name: bosh-helpers
+  version: a616966453683545eb0e28d88da5a951f5f110ae
+  fingerprint: a616966453683545eb0e28d88da5a951f5f110ae
+  sha1: 1e3e0e95d2cb2bb3fae63bab1ecff635750bacbb
+  dependencies: []
+- name: ctop
+  version: e5f579167182e9a1587c2346f4e84bad2c445c2e
+  fingerprint: e5f579167182e9a1587c2346f4e84bad2c445c2e
+  sha1: 8128ea850a0d8d754fb3ea016e8ac68e5d64e7da
+  dependencies: []
+- name: docker
+  version: d1c19ff703e4425f3956228824e26059805b8a1f
+  fingerprint: d1c19ff703e4425f3956228824e26059805b8a1f
+  sha1: 54f20eacfd9099de34a479ced1e2bc77cd7dbf8f
+  dependencies: []
+- name: golang
+  version: 7bddc02ea4a7cc8f325253cea9dbe01ab6ea8129
+  fingerprint: 7bddc02ea4a7cc8f325253cea9dbe01ab6ea8129
+  sha1: 8a38a65a4115ebcb8a9e5d931b2355dd91481ded
+  dependencies: []
+- name: jumpbox
+  version: 6b96adb20589be45f6e0ad8d16cb4e5a950b5f7a
+  fingerprint: 6b96adb20589be45f6e0ad8d16cb4e5a950b5f7a
+  sha1: 037bf8ce8c95372b1c5101d561e6f82e2eefadcf
+  dependencies: []
+license:
+  version: a00ab0d4170cb74ed8f464700c229556099d14b8
+  fingerprint: a00ab0d4170cb74ed8f464700c229556099d14b8
+  sha1: 793c69b8e755bd63916a9c9ac99bb02d74764c3b
