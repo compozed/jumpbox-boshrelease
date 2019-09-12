@@ -6,7 +6,7 @@ instance_groups:
   azs:       [z1]
   vm_type:   default
   stemcell:  default
-  persistent_disk_pool: default
+  persistent_disk_type: default
   networks:
     - name: default
   jobs:
